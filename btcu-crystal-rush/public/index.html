@@ -1,66 +1,68 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-  <title>BTCU — Crystal Rush</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#05080d">
+  <title>BTCU — Crystal Clash</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div id="app">
-    <section id="home" class="screen active">
-      <div class="brand">BTCU <span>ORIGINALS</span></div>
-      <h1>CRYSTAL RUSH</h1>
-      <p class="tagline">Enter the Saptapuras arena. Collect more crystals than everyone else.</p>
-      <div class="panel home-panel">
-        <label>Your name<input id="nameInput" maxlength="18" placeholder="Player" autocomplete="off" /></label>
-        <button id="createBtn" class="primary">CREATE ROOM</button>
-        <div class="divider"><span>OR JOIN</span></div>
-        <div class="join-row"><input id="roomInput" maxlength="5" placeholder="ROOM CODE" autocomplete="off" /><button id="joinBtn">JOIN</button></div>
-        <div id="homeError" class="error"></div>
-      </div>
-      <div class="how"><strong>2–8 players</strong> · No login · Phone or laptop</div>
-    </section>
+<div id="app">
+  <section id="home" class="screen active">
+    <div class="bg-grid"></div><div class="orb orb-a"></div><div class="orb orb-b"></div>
+    <header class="brand">BTCU <span>ORIGINALS</span></header>
+    <div class="hero-badge">LIVE MULTIPLAYER · 2–8 PLAYERS</div>
+    <h1>CRYSTAL<br><span>CLASH</span></h1>
+    <p class="subtitle">Race, shoot, dash and steal the crystal crown before the storm closes in.</p>
+    <div class="home-card glass">
+      <label>PLAYER NAME<input id="nameInput" maxlength="18" placeholder="Enter your name" autocomplete="off"></label>
+      <button id="createBtn" class="primary">CREATE BATTLE</button>
+      <div class="or"><span>OR JOIN WITH CODE</span></div>
+      <div class="join-row"><input id="roomInput" maxlength="5" placeholder="ABCDE" autocomplete="off"><button id="joinBtn" class="ghost">JOIN</button></div>
+      <div id="homeError" class="error"></div>
+    </div>
+    <div class="pill-row"><span>💎 Collect</span><span>🔫 Blast</span><span>⚡ Dash</span><span>🌩 Survive</span></div>
+    <div class="small-note">No login · Works on phone & laptop · Share one room code</div>
+  </section>
 
-    <section id="lobby" class="screen">
-      <div class="topbar"><div class="brand small">BTCU <span>ORIGINALS</span></div><div>ROOM <strong id="roomCode">-----</strong></div></div>
-      <div class="panel lobby-panel">
-        <h2>ROOM READY</h2>
-        <p>Share the code with your friends.</p>
-        <button id="copyBtn" class="code">-----</button>
-        <div id="playerList" class="player-list"></div>
-        <button id="startBtn" class="primary">START MATCH</button>
-        <div id="lobbyHint" class="hint">Need at least 2 players.</div>
-      </div>
-    </section>
+  <section id="lobby" class="screen">
+    <div class="topline"><span class="brand mini">BTCU <b>ORIGINALS</b></span><span>ROOM <strong id="roomCode">-----</strong></span></div>
+    <div class="lobby-card glass">
+      <div class="kicker">BATTLE LOBBY</div><h2>BUILD YOUR SQUAD</h2>
+      <p>Invite up to 8 players. The host starts the 90-second battle.</p>
+      <button id="copyBtn" class="room-code">-----</button>
+      <div id="playerList" class="player-list"></div>
+      <button id="startBtn" class="primary">START BATTLE</button>
+      <div id="lobbyHint" class="hint"></div>
+    </div>
+  </section>
 
-    <section id="game" class="screen game-screen">
-      <canvas id="gameCanvas"></canvas>
-      <div class="hud">
-        <div class="hud-box"><span>TIME</span><strong id="timer">60</strong></div>
-        <div class="hud-box score-box"><span>TOP SCORES</span><div id="scoreboard"></div></div>
-      </div>
-      <div id="touchControls" class="touch-controls">
-        <button data-dx="-1" data-dy="0">◀</button>
-        <div><button data-dx="0" data-dy="-1">▲</button><button data-dx="0" data-dy="1">▼</button></div>
-        <button data-dx="1" data-dy="0">▶</button>
-      </div>
-    </section>
-
-    <section id="results" class="screen">
-      <div class="brand">BTCU <span>ORIGINALS</span></div>
-      <h1 id="winnerTitle">MATCH COMPLETE</h1>
-      <div class="panel results-panel">
-        <div id="winnerLine" class="winner-line"></div>
-        <div id="finalScores" class="final-scores"></div>
-        <button id="rematchBtn" class="primary">REMATCH</button>
-        <button id="homeBtn" class="secondary">NEW ROOM</button>
-      </div>
-    </section>
-
+  <section id="game" class="screen game-screen">
+    <canvas id="gameCanvas"></canvas>
+    <div class="hud">
+      <div class="hud-card timer-card"><span>TIME</span><b id="timer">90</b></div>
+      <div class="hud-middle"><div id="phase">BATTLE LIVE</div><div id="combo">x1 COMBO</div></div>
+      <div class="hud-card leaderboard"><span>LEADERBOARD</span><div id="scoreboard"></div></div>
+    </div>
+    <div id="countdown" class="countdown hidden">3</div>
+    <div id="helpHint" class="help-hint">WASD / arrows move · Mouse aim · Click/SPACE fire · SHIFT dash</div>
+    <div id="mobileControls">
+      <div id="stick" class="stick"><div id="stickKnob"></div></div>
+      <button id="dashBtn" class="ability-btn dash">⚡<small>DASH</small></button>
+      <button id="shootBtn" class="ability-btn shoot">✦<small>FIRE</small></button>
+    </div>
+    <div id="damageFlash"></div>
     <div id="toast" class="toast"></div>
-  </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/client.js"></script>
+  </section>
+
+  <section id="results" class="screen">
+    <div class="brand">BTCU <span>ORIGINALS</span></div>
+    <div class="kicker">MATCH COMPLETE</div>
+    <h1 class="results-title">FINAL<br>RESULTS</h1>
+    <div class="results-card glass"><div id="winnerLine" class="winner-line"></div><div id="finalScores" class="final-scores"></div><button id="rematchBtn" class="primary">REMATCH</button><button id="homeBtn" class="ghost wide">NEW BATTLE</button></div>
+  </section>
+</div>
+<script src="/socket.io/socket.io.js"></script><script src="/client.js"></script>
 </body>
 </html>
