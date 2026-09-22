@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>BTCU — Crystal Rush</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="app">
+    <section id="home" class="screen active">
+      <div class="brand">BTCU <span>ORIGINALS</span></div>
+      <h1>CRYSTAL RUSH</h1>
+      <p class="tagline">Enter the Saptapuras arena. Collect more crystals than everyone else.</p>
+      <div class="panel home-panel">
+        <label>Your name<input id="nameInput" maxlength="18" placeholder="Player" autocomplete="off" /></label>
+        <button id="createBtn" class="primary">CREATE ROOM</button>
+        <div class="divider"><span>OR JOIN</span></div>
+        <div class="join-row"><input id="roomInput" maxlength="5" placeholder="ROOM CODE" autocomplete="off" /><button id="joinBtn">JOIN</button></div>
+        <div id="homeError" class="error"></div>
+      </div>
+      <div class="how"><strong>2–8 players</strong> · No login · Phone or laptop</div>
+    </section>
+
+    <section id="lobby" class="screen">
+      <div class="topbar"><div class="brand small">BTCU <span>ORIGINALS</span></div><div>ROOM <strong id="roomCode">-----</strong></div></div>
+      <div class="panel lobby-panel">
+        <h2>ROOM READY</h2>
+        <p>Share the code with your friends.</p>
+        <button id="copyBtn" class="code">-----</button>
+        <div id="playerList" class="player-list"></div>
+        <button id="startBtn" class="primary">START MATCH</button>
+        <div id="lobbyHint" class="hint">Need at least 2 players.</div>
+      </div>
+    </section>
+
+    <section id="game" class="screen game-screen">
+      <canvas id="gameCanvas"></canvas>
+      <div class="hud">
+        <div class="hud-box"><span>TIME</span><strong id="timer">60</strong></div>
+        <div class="hud-box score-box"><span>TOP SCORES</span><div id="scoreboard"></div></div>
+      </div>
+      <div id="touchControls" class="touch-controls">
+        <button data-dx="-1" data-dy="0">◀</button>
+        <div><button data-dx="0" data-dy="-1">▲</button><button data-dx="0" data-dy="1">▼</button></div>
+        <button data-dx="1" data-dy="0">▶</button>
+      </div>
+    </section>
+
+    <section id="results" class="screen">
+      <div class="brand">BTCU <span>ORIGINALS</span></div>
+      <h1 id="winnerTitle">MATCH COMPLETE</h1>
+      <div class="panel results-panel">
+        <div id="winnerLine" class="winner-line"></div>
+        <div id="finalScores" class="final-scores"></div>
+        <button id="rematchBtn" class="primary">REMATCH</button>
+        <button id="homeBtn" class="secondary">NEW ROOM</button>
+      </div>
+    </section>
+
+    <div id="toast" class="toast"></div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
