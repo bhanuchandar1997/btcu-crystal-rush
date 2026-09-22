@@ -1,31 +1,25 @@
-# BTCU — Crystal Rush
+# BTCU — Crystal Clash
 
-A room-code, no-login, real-time multiplayer browser game for 2–8 players.
+A room-code, no-login, real-time multiplayer browser arena for 2–8 players.
 
 ## Gameplay
-Players enter a room, wait in the lobby, then race around the arena for 60 seconds and collect crystals. Green crystals are worth 1 point; rare gold crystals are worth 3 points.
+- Collect crystals to score.
+- Use fire to damage rival players and steal momentum.
+- Dash to escape or reposition.
+- Grab Boost, Shield, and Rapid-Fire powerups.
+- Survive the shrinking storm.
+- Highest score after 90 seconds wins.
 
-Controls:
-- Desktop: WASD or arrow keys
-- Mobile: on-screen directional buttons
+## Controls
+Desktop: WASD / arrow keys to move, mouse to aim, click or Space to fire, Shift to dash.
+Mobile: virtual joystick, FIRE, and DASH buttons.
 
-## Local run
+## Run locally
 ```bash
 npm install
 npm start
 ```
-Then open `http://localhost:10000` in two browser windows/devices.
+Then open http://localhost:10000
 
 ## Deploy on Render
-This repository includes `render.yaml`. Create a Render Web Service from the repo. Render supports Node.js web services and WebSocket connections; the server binds to `0.0.0.0` and uses the `PORT` environment variable. Free web services are available for testing/hobby projects but can spin down after inactivity.
-
-Build command: `npm install`
-Start command: `npm start`
-Health check: `/health`
-
-## Submission checklist
-- Public game URL
-- Room-code join test with 2+ devices
-- Mobile + desktop test
-- Screenshot/video of a live match
-- GitHub repository URL
+Set Build Command to `npm install`, Start Command to `npm start`, and use a free web service for testing.
